@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.className} dark bg-background`}>
+      <body className={`font-sans ${GeistSans.className} bg-background`}>
         <Providers>{children}</Providers>
       </body>
     </html>

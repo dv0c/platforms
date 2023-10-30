@@ -179,10 +179,8 @@ export default function Nav({ children, userImage }: IProps) {
       >
         <div className="grid gap-2">
           <div className="flex items-center space-x-2 rounded-lg px-2 py-1.5">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={process.env.NEXT_PUBLIC_HOMEPAGE_DOMAIN!}
               className="rounded-lg p-1.5 hover:bg-stone-200 dark:hover:bg-stone-700"
             >
               <svg
@@ -197,7 +195,7 @@ export default function Nav({ children, userImage }: IProps) {
                   fill="currentColor"
                 />
               </svg>
-            </a>
+            </Link>
             <div className="h-6 rotate-[30deg] border-l border-stone-400 dark:border-stone-500" />
             <Link
               href="/settings"

@@ -1,4 +1,3 @@
-import User from "@/components/User";
 import Nav from "@/components/nav";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { getSession } from "@/server/auth";
