@@ -9,9 +9,6 @@ const config = {
   images: {
     domains: ["app.vercel.pub", "avatars.githubusercontent.com"],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
 
 export default config;

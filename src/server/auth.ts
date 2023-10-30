@@ -11,6 +11,8 @@ import GitHubProvider from "next-auth/providers/github";
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
+import { nanoid } from "nanoid";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -51,19 +53,47 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
-      if (user) {
-        token.user = user;
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email,
+        },
+      });
+
+      if (!dbUser) {
+        token.id = user!.id;
+        return token;
       }
-      return token;
+
+      if (!dbUser.username) {
+        await db.user.update({
+          where: {
+            id: dbUser.id,
+          },
+          data: {
+            username: nanoid(10),
+          },
+        });
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+        username: dbUser.username,
+      };
     },
-    session: async ({ session, token }) => {
+    session: async ({ session, token, trigger }) => {
       session.user = {
         ...session.user,
         // @ts-expect-error
-        id: token.sub,
+        id: token.id,
         // @ts-expect-error
         username: token?.user?.username || token?.user?.gh_username,
       };
+      if (trigger === "update") {
+        token.name = session?.user?.name;
+      }
       return session;
     },
   },
