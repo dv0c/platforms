@@ -58,12 +58,12 @@ const page = () => {
                 placeholder="John Doe"
                 maxLength={32}
                 onChange={(e) => setName(e.target.value)}
-                disabled={!!!email}
+                disabled={!!!name || true}
               />
             </form>
           </div>
           <div className="flex flex-col items-center justify-center space-y-2 rounded-b-md border-t border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
-            <div className="">
+            <div>
               <Label className="text-sm text-stone-500 dark:text-stone-400">
                 Please use 32 characters maximum.
               </Label>
@@ -74,7 +74,7 @@ const page = () => {
                 type="submit"
                 className="dark:bg-stone-950 dark:text-white dark:hover:bg-stone-900"
                 variant={"default"}
-                disabled={update.isPending}
+                disabled={update.isPending || true}
               >
                 Save Changes
               </Button>
@@ -83,6 +83,12 @@ const page = () => {
         </div>
         <div className="rounded-md border">
           <div className="p-10">
+            <div className="mb-3">
+              <h4 className="text-xs text-red-400">WORK IN PROGRESS</h4>
+              <h4 className="text-xs text-red-400">
+                You have to refresh the page after your change your name.
+              </h4>
+            </div>
             <h1 className="text-xl font-semibold">Email</h1>
             <form
               onSubmit={(e) => onSubmit(e)}
@@ -93,27 +99,27 @@ const page = () => {
                 Your email on this app.
               </Label>
               <Input
-                id="changeName"
-                name="changeName"
+                id="changeEmail"
+                name="changeEmail"
                 className="mt-3 max-w-md border-stone-500"
                 value={email}
                 placeholder="johndoe@example.com"
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={!!!email}
+                disabled={!!!email || true}
               />
             </form>
           </div>
           <div className="flex flex-col items-center justify-center space-y-2 rounded-b-md border-t border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10">
             <div className="">
               <Label className="text-sm text-stone-500 dark:text-stone-400">
-                Please use 32 characters maximum.
+                Please use vaild email address.
               </Label>
             </div>
             <div>
               <Button
                 form="submitEmail"
                 type="submit"
-                className="disabled:bg-stone-950 dark:bg-stone-900 dark:text-white dark:hover:bg-stone-900"
+                className="dark:bg-stone-950 dark:text-white dark:hover:bg-stone-900"
                 variant={"default"}
                 disabled
               >
