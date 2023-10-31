@@ -3,7 +3,7 @@ import { getSession } from "@/server/auth";
 import { db } from "@/server/db";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: NextResponse) {
+export async function POST(req: Request) {
   const _$ = await getSession();
 
   const body = await req.json();

@@ -5,3 +5,8 @@ export const _CreateSite = z.object({
   subdomain: z.string().min(2).max(13),
   description: z.string().min(0).max(200),
 });
+
+export const _CreatePost = z.object({
+  siteId: z.string(),
+  userId: z.string(),
+});
