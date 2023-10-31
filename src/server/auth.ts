@@ -81,6 +81,8 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
         username: dbUser.username,
+        plan: dbUser.plan,
+        role: dbUser.role,
       };
     },
     session: async ({ session, token, trigger }) => {
@@ -88,8 +90,9 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         // @ts-expect-error
         id: token.id,
-        // @ts-expect-error
-        username: token?.user?.username || token?.user?.gh_username,
+        username: token?.username || token?.gh_username,
+        role: token.role,
+        plan: token.plan,
       };
       if (trigger === "update") {
         token.name = session?.user?.name;
@@ -107,6 +110,8 @@ export function getSession() {
       username: string;
       email: string;
       image: string;
+      plan: string;
+      role: string;
     };
   } | null>;
 }

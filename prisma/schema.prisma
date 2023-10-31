@@ -30,6 +30,8 @@ model User {
     sessions      Session[]
     sites         Site[]
     posts         Post[]
+    plan          String?   @default("free")
+    role          String?   @default("user")
 }
 
 model Account {

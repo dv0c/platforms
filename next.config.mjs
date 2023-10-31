@@ -11,6 +11,7 @@ const config = {
       "app.vercel.pub",
       "avatars.githubusercontent.com",
       "public.blob.vercel-storage.com",
+      "avatar.vercel.sh",
     ],
   },
 };

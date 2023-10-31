@@ -16,15 +16,19 @@ import {
 import {
   useParams,
   usePathname,
+  useRouter,
   useSelectedLayoutSegments,
 } from "next/navigation";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { getSiteFromPostId } from "@/lib/actions";
 import Image from "next/image";
 import { FileCode, Github } from "lucide-react";
+import { capitalize } from "@/lib/utils";
 
 interface IProps {
   userImage: string;
+  role: string;
+  plan: string;
   children: React.ReactNode;
 }
 
@@ -66,7 +70,8 @@ const externalLinks = [
   // },
 ];
 
-export default function Nav({ children, userImage }: IProps) {
+export default function Nav({ children, userImage, plan, role }: IProps) {
+  const router = useRouter();
   const segments = useSelectedLayoutSegments();
   const { id } = useParams() as { id?: string };
 
@@ -228,6 +233,25 @@ export default function Nav({ children, userImage }: IProps) {
         </div>
         <div>
           <div className="grid gap-1">
+            {plan === "free" && (
+              <div
+                onClick={() => router.push("/plans")}
+                className="relative my-5 h-[200px] w-full cursor-pointer select-none overflow-hidden rounded-md border bg-stone-800 shadow"
+              >
+                <div className="mt-3 flex flex-col px-3">
+                  <span className="text-xs font-bold">Your plan:</span>
+                  <span className="text-5xl font-bold">{capitalize(plan)}</span>
+                </div>
+                <Image
+                  className="absolute right-[-30px] top-[100px]"
+                  src="/premium.png"
+                  alt="Premium"
+                  width={150}
+                  height={150}
+                  draggable={false}
+                />
+              </div>
+            )}
             {externalLinks.map(({ name, href, icon }) => (
               <a
                 key={name}
@@ -244,6 +268,7 @@ export default function Nav({ children, userImage }: IProps) {
               </a>
             ))}
           </div>
+
           <div className="my-2 border-t border-stone-200 dark:border-stone-700" />
           {children}
         </div>
