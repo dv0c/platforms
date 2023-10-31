@@ -10,3 +10,7 @@ export const _CreatePost = z.object({
   siteId: z.string(),
   userId: z.string(),
 });
+
+export const _DeleteSite = z.object({
+  siteId: z.string(),
+});
