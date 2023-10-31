@@ -3,6 +3,7 @@ import { Navigation } from "./Navigation";
 import Profile from "@/components/Profile";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/server/auth";
+import Link from "next/link";
 
 const Navbar = async () => {
   const session = await getSession();
@@ -16,7 +17,11 @@ const Navbar = async () => {
         </div>
         <Navigation />
         <div className="ml-auto flex items-center gap-3">
-          {session?.user && <Button variant={"ghost"}>Go to dashboard</Button>}
+          {session?.user && (
+            <Link href={process.env.NEXT_PUBLIC_APP_DOMAIN!}>
+              <Button variant={"ghost"}>Go to dashboard</Button>
+            </Link>
+          )}
           <Profile session={session} />
         </div>
       </nav>
