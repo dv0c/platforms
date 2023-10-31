@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function NotFoundSite() {
   return (
-    <div className="mt-20 flex flex-col items-center space-x-4">
+    <div className="flex flex-col items-center space-x-4 pt-20">
       <h1 className="font-cal text-4xl dark:text-white">404</h1>
       <Image
         alt="missing site"

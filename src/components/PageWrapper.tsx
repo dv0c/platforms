@@ -45,13 +45,3 @@ export const PageContent = ({
 }) => {
   return <div>{children}</div>;
 };
-
-export const PageAction = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: any;
-}) => {
-  return <div className={className}>{children}</div>;
-};

@@ -26,9 +26,11 @@ import {
 import { createSite } from "@/lib/queries";
 import { toast } from "sonner";
 import LoadingDots from "@/components/icons/loading-dots";
+import { useRouter } from "next/navigation";
 
 const CreateNewSite = () => {
-  const { mutateAsync: create, isPending, error: err, isError } = createSite();
+  const router = useRouter();
+  const { mutateAsync: create, isPending } = createSite();
 
   const form = useForm<z.infer<typeof _CreateSite>>({
     resolver: zodResolver(_CreateSite),
@@ -40,14 +42,17 @@ const CreateNewSite = () => {
   });
 
   function onSubmit(values: z.infer<typeof _CreateSite>) {
-    toast.promise(create(values), {
-      loading: "Creating site...",
-      error:
-        isError && err.message == "Request failed with status code 412"
-          ? "This subdomain is already taken"
-          : "Something went wrong. Please try again later",
-      success: "Site created successfully",
-    });
+    create(values)
+      .then((res) => {
+        router.push(process.env.NEXT_PUBLIC_APP_DOMAIN + "/site/" + res.id);
+        return toast.success("Site created successfully");
+      })
+      .catch((error) => {
+        if (error.response.status === 412) {
+          return toast.error("This subdomain is already taken");
+        }
+        return toast.error("Something went wrong. Please try again later");
+      });
   }
 
   return (
@@ -76,6 +81,9 @@ const CreateNewSite = () => {
                       {...field}
                       placeholder="My Awesome Site"
                       className="px-4 placeholder:text-stone-600"
+                      onKeyUp={() =>
+                        form.setValue("subdomain", form.getValues("name"))
+                      }
                     />
                   </FormControl>
                   <FormMessage />

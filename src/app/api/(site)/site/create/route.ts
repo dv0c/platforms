@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     );
 
   try {
-    await db.site.create({
+    const site = await db.site.create({
       data: {
         name,
         description,
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         },
       },
     });
-    return new Response(JSON.stringify("OK"));
+    return new Response(JSON.stringify(site));
   } catch (error) {
     console.log(error);
     return new Response(JSON.stringify({ error: error }));

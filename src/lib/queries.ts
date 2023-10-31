@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { z } from "zod";
 import { _CreatePost, _CreateSite, _DeleteSite } from "./Validators";
