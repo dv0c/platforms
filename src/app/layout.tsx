@@ -2,6 +2,7 @@ import Providers from "@/components/Providers";
 import "@/styles/globals.css";
 
 import { GeistSans, GeistMono } from "geist/font";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Platforms | Paranoia",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.className} bg-background`}>
+        <Toaster />
         <Providers>{children}</Providers>
       </body>
     </html>
