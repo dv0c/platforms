@@ -198,6 +198,7 @@ export default function Nav({ children, userImage }: IProps) {
             </Link>
             <div className="h-6 rotate-[30deg] border-l border-stone-400 dark:border-stone-500" />
             <Link
+              aria-label="home"
               href="/settings"
               className="rounded-lg p-2 hover:bg-stone-200 dark:hover:bg-stone-700"
             >

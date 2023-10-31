@@ -1,6 +1,5 @@
 import Logo from "@/components/Logo";
 import { Navigation } from "./Navigation";
-import Profile from "@/components/Profile";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/server/auth";
 import Link from "next/link";
@@ -12,17 +11,18 @@ const Navbar = async () => {
   return (
     <header className="container py-5">
       <nav className="flex items-center">
-        <div className="mr-auto">
+        <div className="flex gap-5">
           <Logo />
+          {/* <Navigation /> */}
         </div>
-        <Navigation />
         <div className="ml-auto flex items-center gap-3">
-          {session?.user && (
-            <Link href={process.env.NEXT_PUBLIC_APP_DOMAIN!}>
-              <Button variant={"ghost"}>Go to dashboard</Button>
-            </Link>
-          )}
-          <Profile session={session} />
+          <Link
+            href={process.env.NEXT_PUBLIC_APP_DOMAIN!}
+            className="space-x-2"
+          >
+            <Button variant={"ghost"}>Sign in</Button>
+            <Button variant={"default"}>Create an account</Button>
+          </Link>
         </div>
       </nav>
     </header>
