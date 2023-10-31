@@ -7,7 +7,11 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    domains: ["app.vercel.pub", "avatars.githubusercontent.com"],
+    domains: [
+      "app.vercel.pub",
+      "avatars.githubusercontent.com",
+      "public.blob.vercel-storage.com",
+    ],
   },
 };
 
