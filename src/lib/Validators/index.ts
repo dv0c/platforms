@@ -14,3 +14,8 @@ export const _CreatePost = z.object({
 export const _DeleteSite = z.object({
   siteId: z.string(),
 });
+
+export const _ChangeSiteName = z.object({
+  name: z.string().min(2).max(50),
+  siteId: z.string(),
+});

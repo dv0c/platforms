@@ -2,7 +2,7 @@ import { PageContent, PageWrapper } from "@/components/PageWrapper";
 
 const page = () => {
   return (
-    <PageWrapper title="Analytics for site">
+    <PageWrapper title="Analytics for subdomain">
       <PageContent>WIP</PageContent>
     </PageWrapper>
   );

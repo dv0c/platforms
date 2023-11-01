@@ -1,7 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { z } from "zod";
-import { _CreatePost, _CreateSite, _DeleteSite } from "./Validators";
+import {
+  _ChangeSiteName,
+  _CreatePost,
+  _CreateSite,
+  _DeleteSite,
+} from "./Validators";
 
 export const changeUser = () => {
   return useMutation({
@@ -41,6 +46,18 @@ export const deleteSite = () => {
   return useMutation({
     mutationFn: async (values: z.infer<typeof _DeleteSite>) => {
       const { data } = await axios.post("/api/site/delete", {
+        siteId: values.siteId,
+      });
+      return data;
+    },
+  });
+};
+
+export const changeSiteName = () => {
+  return useMutation({
+    mutationFn: async (values: z.infer<typeof _ChangeSiteName>) => {
+      const { data } = await axios.post("/api/site/update/name", {
+        name: values.name,
         siteId: values.siteId,
       });
       return data;
