@@ -47,7 +47,7 @@ const DeleteSite = ({ id, subdomain }: IProps) => {
   };
 
   return (
-    <div className="mb-10 rounded-md border border-destructive/90">
+    <div className="mb-10 rounded-md border border-destructive">
       <div className="p-10">
         <h1 className="text-xl font-semibold">Delete Site</h1>
         <form

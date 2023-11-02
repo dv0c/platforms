@@ -2,7 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { z } from "zod";
 import {
+  _ChangeSiteDescription,
   _ChangeSiteName,
+  _ChangeSiteSubdomain,
   _CreatePost,
   _CreateSite,
   _DeleteSite,
@@ -58,6 +60,30 @@ export const changeSiteName = () => {
     mutationFn: async (values: z.infer<typeof _ChangeSiteName>) => {
       const { data } = await axios.post("/api/site/update/name", {
         name: values.name,
+        siteId: values.siteId,
+      });
+      return data;
+    },
+  });
+};
+
+export const changeSiteDescription = () => {
+  return useMutation({
+    mutationFn: async (values: z.infer<typeof _ChangeSiteDescription>) => {
+      const { data } = await axios.post("/api/site/update/description", {
+        description: values.description,
+        siteId: values.siteId,
+      });
+      return data;
+    },
+  });
+};
+
+export const changeSiteSubdomain = () => {
+  return useMutation({
+    mutationFn: async (values: z.infer<typeof _ChangeSiteSubdomain>) => {
+      const { data } = await axios.post("/api/site/update/subdomain", {
+        subdomain: values.subdomain,
         siteId: values.siteId,
       });
       return data;
