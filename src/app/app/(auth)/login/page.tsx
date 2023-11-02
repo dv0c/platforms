@@ -13,10 +13,10 @@ export default function LoginPage() {
         src="https://app.vercel.pub/_next/image?url=%2Flogo.png&w=128&q=75"
       />
       <h1 className="font-cal mt-6 text-center text-3xl dark:text-white">
-        Platforms Starter Kit
+        Platforms Paranoia
       </h1>
       <p className="mt-2 text-center text-sm text-stone-600 dark:text-stone-400">
-        Build multi-tenant applications with custom domains. <br />
+        Build fast and easy applications with Platforms. <br />
         <a
           className="font-medium text-black hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100"
           href="https://vercel.com/blog/platforms-starter-kit"
