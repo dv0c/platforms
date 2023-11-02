@@ -1,7 +1,7 @@
 import Providers from "@/components/Providers";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
-import { GeistSans, GeistMono } from "geist/font";
+import { GeistSans } from "geist/font";
 import { Toaster } from "sonner";
 
 export const metadata = {
